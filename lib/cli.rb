@@ -51,6 +51,13 @@ class CLI
       if filename != nil
         session.save_to_csv(filename)
       end
+    when help?
+      user_option = @command.split(" ")[1]
+      if user_option !=nil
+        outstream.puts  messages.help_list(user_option)
+      else
+        outstream.puts messages.help
+      end
     end
   end
 
@@ -84,5 +91,9 @@ class CLI
 
   def quit?
     command.downcase == "quit"
+  end
+
+  def help?
+    command.downcase.start_with?("help")
   end
 end

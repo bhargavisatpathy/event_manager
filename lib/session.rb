@@ -5,28 +5,29 @@ require_relative '../lib/messages'
 require_relative '../lib/entry'
 
 class Session
-  attr_reader :filename, :contents, :queue, :messages
+  attr_reader :filename, :contents, :queue, :messages, :data_cleaner
 
   def initialize(filename)
-    @filename  = filename
-    @contents  = []
-    @queue     = []
-    @messages  = Messages.new
+    @filename     = filename
+    @contents     = []
+    @queue        = []
+    @messages     = Messages.new
+    @data_cleaner = DataCleaner.new
   end
 
   def load_file
     data = CSV.open(filename, headers: true, header_converters: :symbol)
     @contents = data.map do |row|
-      content = {}
-      content[:id] = row[0]
-      content[:regdate] = Time.strptime(row[:regdate], "%m/%d/%y %H:%M")
-      content[:first_name] = row[:first_name].strip
-      content[:last_name] = row[:last_name].strip
+      content                 = {}
+      content[:id]            = row[0]
+      content[:regdate]       = Time.strptime(row[:regdate], "%m/%d/%y %H:%M")
+      content[:first_name]    = row[:first_name].strip
+      content[:last_name]     = row[:last_name].strip
       content[:email_address] = row[:email_address].strip
-      content[:homephone] = clean_homephone(row[:homephone])
-      content[:state] = clean_state(row[:state])
-      content[:street] = clean_street(row[:street])
-      content[:zipcode] = clean_zipcode(row[:zipcode])
+      content[:homephone]     = data_cleaner.clean_homephone(row[:homephone])
+      content[:state]         = data_cleaner.clean_state(row[:state])
+      content[:street]        = data_cleaner.clean_street(row[:street])
+      content[:zipcode]       = data_cleaner.clean_zipcode(row[:zipcode])
       Entry.new(content)
     end
   end
@@ -68,7 +69,7 @@ class Session
 
 end
 
-# session = Session.new
+# session = Session.new("../event_attendees.csv")
 # session.load_file
 # session.find(:zipcode, "20011")
 # puts session.queue
