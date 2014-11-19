@@ -26,6 +26,7 @@ class Session
       content[:email_address] = row[:email_address].strip
       content[:homephone]     = data_cleaner.clean_homephone(row[:homephone])
       content[:state]         = data_cleaner.clean_state(row[:state])
+      content[:city]          = data_cleaner.clean_city(row[:city])
       content[:street]        = data_cleaner.clean_street(row[:street])
       content[:zipcode]       = data_cleaner.clean_zipcode(row[:zipcode])
       Entry.new(content)

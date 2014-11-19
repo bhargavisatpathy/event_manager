@@ -22,26 +22,16 @@ class CLI
     end
   end
 
-  #private
-
   def process_commands
     case
-    when load?
-      load_process
-    when print?
-      outstream.puts session.queue_to_tsv
-    when print_by?
-      print_by_process
-    when count?
-      outstream.puts session.queue.length
-    when clear?
-      outstream.puts session.queue_clear
-    when find?
-      find_process
-    when save?
-      save_process
-    when help?
-      help_process
+    when load?                  then load_process
+    when print?                 then outstream.puts session.queue_to_tsv
+    when print_by?              then print_by_process
+    when count?                 then outstream.puts session.queue.length
+    when clear?                 then outstream.puts session.queue_clear
+    when find?                  then find_process
+    when save?                  then save_process
+    when help?                  then help_process
     else
       if !quit?
         outstream.puts messages.invalid_command

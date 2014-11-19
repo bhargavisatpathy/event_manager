@@ -17,7 +17,8 @@ end
 
 def find_process
   attribute = @command.split(" ")[1]
-  criteria = @command.split(" ")[2]
+  criteria = @command.split(" ")[2] if @command.split(" ")[3] == nil
+  criteria = @command.split[2..-1].join(" ") if @command.split(" ")[3] != nil
   if attribute != nil && criteria != nil
     session.find(attribute, criteria)
   end

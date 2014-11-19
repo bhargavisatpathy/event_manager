@@ -10,15 +10,24 @@ class DataCleaner
 
   def clean_state(state)
     if state == nil || state == ""
-      "state not given"
+      "Nil"
     else
       state.strip[0..1]
     end
   end
 
+
+  def clean_city(city)
+    if city == nil || city == ""
+      "Nil"
+    else
+      city.downcase#.gsub(/\s+/,"")
+    end
+  end
+
   def clean_street(street)
     if street == nil || street == ""
-      "street not given"
+      "Nil"
     else
       street.strip
     end

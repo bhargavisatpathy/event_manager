@@ -2,7 +2,6 @@ require_relative '../test/test_helper'
 require_relative '../lib/data_cleaner'
 
 class DataCleanerTest < Minitest::Test
-
   def test_it_shows_zipcode_as_five_digits
     zipcode = " 382".to_i
     data_cleaner = DataCleaner.new

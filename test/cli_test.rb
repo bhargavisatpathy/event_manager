@@ -15,6 +15,15 @@ class CLITest < Minitest::Test
 
   def test_prints_queue
     cli = CLI.new(nil,nil)
+    cli.stub "command", "load" do
+    refute cli.print?
+    refute cli.quit?
+    assert cli.load?
+    end
+  end
+
+  def test_prints_queue
+    cli = CLI.new(nil,nil)
     cli.stub "command", "queue print" do
     assert cli.print?
     refute cli.quit?
