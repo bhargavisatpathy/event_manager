@@ -1,6 +1,6 @@
 class Entry
 
-  attr_reader :first_name, :last_name, :email_address, :zipcode, :city, :state, :street, :home_phone
+  attr_reader :last_name, :first_name, :email_address, :zipcode, :city, :state, :street, :home_phone
   def initialize(data)
     @id             = data[0]
     @reg_date       = data[:regdate]
@@ -18,6 +18,4 @@ class Entry
     #"LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE"
     [last_name, first_name, email_address, zipcode, city, state, street, home_phone]
   end
-
-
 end

@@ -1,7 +1,19 @@
 class Messages
 
   def welcome
-    "Welcome to event reporter"
+    "Initializing Event Reporter"
+  end
+
+  def invalid_command
+    "Please enter valid command\n"
+  end
+
+  def load_option(filename)
+    "File #{filename} loaded\n\n"
+  end
+
+  def records_found(length)
+    "Found #{length} records. Use 'queue print' to see them.\n\n"
   end
 
   def tsv_header
@@ -19,22 +31,24 @@ To check number of records of the find output   :queue count
 To list out the output of find:                 :queue print
 To print output sorted by an attribute          :queue print by <attribute>
 To save the output in a csv file                :queue save to <filename>
-To start a new search (clear the queue)         :queue clear"
+To start a new search (clear the queue)         :queue clear
+\n"
   end
 
   def help_list(user_option)
 
     case user_option.downcase
     when "load"
-      "To load a file: load <filename>"
+      "To load a file: load <filename>\n"
     when "find"
-      "To find a record: find <attribute> <criteria>"
+      "To find a record: find <attribute> <criteria>\n"
     when "queue"
       "To list out the output of find: queue print
       To print output sorted by an attribute: queue print by <attribute>
-      To start a new search (clear the queue): queue clear"
+      To start a new search (clear the queue): queue clear\n"
     when "save"
-      "To save the output in a csv file: queue save to <filename.csv>"
+      "To save the output in a csv file: queue save to <filename.csv>\n"
     end
   end
+
 end

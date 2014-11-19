@@ -1,9 +1,10 @@
 require 'csv'
 require_relative 'session'
+require_relative 'cli_extension'
 
 class CLI
   attr_reader :command, :messages, :instream, :outstream, :session
-
+  attr_accessor :command
   def initialize(instream, outstream)
     @messages  = Messages.new
     @instream  = instream
@@ -14,49 +15,36 @@ class CLI
 
   def call
     outstream.puts messages.welcome
+    outstream.puts messages.help
     until quit?
       @command = instream.gets.strip
       process_commands
     end
   end
 
-  private
+  #private
 
   def process_commands
     case
     when load?
-      filename = @command[4..-1].strip
-      filename = "event_attendees.csv" if filename.empty?
-      @session = Session.new(filename)
-      session.load_file
+      load_process
     when print?
       outstream.puts session.queue_to_tsv
     when print_by?
-      attribute = @command.split(" ")[3]
-      if attribute != nil
-        outstream.puts session.sorted_queue_to_tsv(attribute)
-      end
+      print_by_process
     when count?
       outstream.puts session.queue.length
     when clear?
       outstream.puts session.queue_clear
     when find?
-      attribute = @command.split(" ")[1]
-      criteria = @command.split(" ")[2]
-      if attribute != nil && criteria != nil
-        session.find(attribute, criteria)
-      end
+      find_process
     when save?
-      filename = @command.split(" ")[3]
-      if filename != nil
-        session.save_to_csv(filename)
-      end
+      save_process
     when help?
-      user_option = @command.split(" ")[1]
-      if user_option !=nil
-        outstream.puts  messages.help_list(user_option)
-      else
-        outstream.puts messages.help
+      help_process
+    else
+      if !quit?
+        outstream.puts messages.invalid_command
       end
     end
   end
@@ -96,4 +84,6 @@ class CLI
   def help?
     command.downcase.start_with?("help")
   end
+
+
 end
