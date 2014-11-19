@@ -60,17 +60,11 @@ class Session
   end
 
   def save_to_csv(filename)
-    CSV.open(filename, "wb") do |csv|
+    CSV.open("./data/" + filename, "wb") do |csv|
       csv << messages.csv_header
       queue.each do |entry|
         csv << entry.to_array
       end
     end
   end
-
 end
-
-# session = Session.new("../event_attendees.csv")
-# session.load_file
-# session.find(:zipcode, "20011")
-# puts session.queue

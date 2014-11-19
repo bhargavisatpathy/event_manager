@@ -6,7 +6,7 @@ class CLITest < Minitest::Test
 
   def setup
     @cli = CLI.new(nil, nil)  #now happens before every test
-    @session = Session.new("some_attendees.csv")
+    @session = Session.new("./data/test_data.csv")
   end
 
   def test_it_exists
@@ -71,6 +71,20 @@ class CLITest < Minitest::Test
     cli = CLI.new(nil,nil)
     cli.stub "command","queue save to" do
     assert cli.save?
+    end
+  end
+
+  def test_it_helps
+    cli = CLI.new(nil,nil)
+    cli.stub "command", "help" do
+      assert cli.help?
+    end
+  end
+
+  def test_it_finds
+    cli = CLI.new(nil,nil)
+    cli.stub "command", "finds" do
+      assert cli.find?
     end
   end
 

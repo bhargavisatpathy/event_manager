@@ -1,7 +1,7 @@
 class Messages
 
   def welcome
-    "Initializing Event Reporter"
+    "\nInitializing Event Reporter\n" + help
   end
 
   def invalid_command
@@ -38,17 +38,10 @@ To start a new search (clear the queue)         :queue clear
   def help_list(user_option)
 
     case user_option.downcase
-    when "load"
-      "To load a file: load <filename>\n"
-    when "find"
-      "To find a record: find <attribute> <criteria>\n"
-    when "queue"
-      "To list out the output of find: queue print
-      To print output sorted by an attribute: queue print by <attribute>
-      To start a new search (clear the queue): queue clear\n"
-    when "save"
-      "To save the output in a csv file: queue save to <filename.csv>\n"
+      when "load"                                 then "To load a file: load <filename>\n"
+      when "find"                                 then "To find a record: find <attribute> <criteria>\n"
+      when "queue"                                then "To list out the output of find: queue print.\nTo print output sorted by an attribute: queue print by <attribute>.\nTo start a new search (clear the queue): queue clear.\n\n"
+      when "save"                                 then "To save the output in a csv file: queue save to <filename.csv>\n"
     end
   end
-
 end

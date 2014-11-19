@@ -15,7 +15,6 @@ class Entry
   end
 
   def to_array
-    #"LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE"
     [last_name, first_name, email_address, zipcode, city, state, street, home_phone]
   end
 end

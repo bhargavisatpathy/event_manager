@@ -15,7 +15,6 @@ class CLI
 
   def call
     outstream.puts messages.welcome
-    outstream.puts messages.help
     until quit?
       @command = instream.gets.strip
       process_commands
@@ -24,14 +23,14 @@ class CLI
 
   def process_commands
     case
-    when load?                  then load_process
-    when print?                 then outstream.puts session.queue_to_tsv
-    when print_by?              then print_by_process
-    when count?                 then outstream.puts session.queue.length
-    when clear?                 then outstream.puts session.queue_clear
-    when find?                  then find_process
-    when save?                  then save_process
-    when help?                  then help_process
+      when load?                  then load_process
+      when print?                 then outstream.puts session.queue_to_tsv
+      when print_by?              then print_by_process
+      when count?                 then outstream.puts session.queue.length
+      when clear?                 then outstream.puts session.queue_clear
+      when find?                  then find_process
+      when save?                  then save_process
+      when help?                  then help_process
     else
       if !quit?
         outstream.puts messages.invalid_command

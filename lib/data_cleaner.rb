@@ -9,27 +9,15 @@ class DataCleaner
   end
 
   def clean_state(state)
-    if state == nil || state == ""
-      "Nil"
-    else
-      state.strip[0..1]
-    end
+    state == nil || state == "" ? "Nil" : state.strip[0..1]
   end
 
 
   def clean_city(city)
-    if city == nil || city == ""
-      "Nil"
-    else
-      city.downcase#.gsub(/\s+/,"")
-    end
+    city == nil || city == "" ? "Nil" : city.downcase
   end
 
   def clean_street(street)
-    if street == nil || street == ""
-      "Nil"
-    else
-      street.strip
-    end
+    street == nil || street == "" ? "Nil" : street.strip
   end
 end
