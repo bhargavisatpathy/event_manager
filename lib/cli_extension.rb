@@ -21,7 +21,6 @@ private
     params.each do |param|
       attribute = param.split[0]
       criteria = param.split[1..-1].join(" ")
-      puts criteria
       attribute_to_criteria[attribute] = criteria
     end
     session.find(attribute_to_criteria)
