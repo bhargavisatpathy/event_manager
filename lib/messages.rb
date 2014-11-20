@@ -43,7 +43,7 @@ To remove records from the queue                :subtract <attribute> <criteria>
     case user_option.downcase
       when "load"                                 then "To load a file: load <filename>\n"
       when "find"                                 then "To find a record: find <attribute> <criteria> [and <attribute> <criteria>]\n"
-      when "queue"                                then "To list out the output of find: queue print.\nTo print output sorted by an attribute: queue print by <attribute>.\nTo start a new search (clear the queue): queue clear.\n\n"
+      when "queue"                                then "To list out the output of find: queue print.\nTo print output sorted by an attribute: queue print by <attribute>.\nTo start a new search (clear the queue): queue clear.\nTo check number of records in queue: queue count.\n\n"
       when "save"                                 then "To save the output in a csv file: queue save to <filename.csv>\n"
       when "add"                                  then "To add records to the queue: add <attribute> <criteria>\n"
       when "subtract"                             then "To remove records from the queue: subtract <attribute> <criteria>\n"
