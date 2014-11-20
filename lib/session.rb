@@ -33,10 +33,20 @@ class Session
     end
   end
 
-  def find(attribute, criteria)
-    @queue = contents.select do |entry|
-      entry.send(attribute).downcase == criteria.strip.downcase
+  def find(attribute_to_criteria)
+    first = true
+    attribute_to_criteria.each do |key, value|
+      @queue = select(key, value, first ? contents : queue)
+      first = false
     end
+  end
+
+  def add(attribute, criteria)
+    @queue += select(attribute, criteria, contents)
+  end
+
+  def subtract(attribute, criteria)
+    @queue = select(attribute, criteria, queue, false)
   end
 
   def queue_clear
@@ -64,6 +74,18 @@ class Session
       csv << messages.csv_header
       queue.each do |entry|
         csv << entry.to_array
+      end
+    end
+  end
+
+  private
+
+  def select(attribute, criteria, source, equality = true)
+    source.select do |entry|
+      if equality
+        entry.send(attribute).downcase == criteria.strip.downcase
+      else
+        entry.send(attribute).downcase != criteria.strip.downcase
       end
     end
   end

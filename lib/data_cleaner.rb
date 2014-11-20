@@ -9,15 +9,15 @@ class DataCleaner
   end
 
   def clean_state(state)
-    state == nil || state == "" ? "Nil" : state.strip[0..1]
+    state == nil || state.empty? ? "N/A" : state.strip[0..1]
   end
 
 
   def clean_city(city)
-    city == nil || city == "" ? "Nil" : city.downcase
+    city == nil || city.empty? ? "N/A" : city.downcase
   end
 
   def clean_street(street)
-    street == nil || street == "" ? "Nil" : street.strip
+    street == nil || street.empty? ? "N/A" : street.strip
   end
 end

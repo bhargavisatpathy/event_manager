@@ -31,6 +31,8 @@ class CLI
       when find?                  then find_process
       when save?                  then save_process
       when help?                  then help_process
+      when add?                   then add_process
+      when subtract?              then subtract_process
     else
       if !quit?
         outstream.puts messages.invalid_command
@@ -60,6 +62,14 @@ class CLI
 
   def find?
     command.downcase.start_with?("find")
+  end
+
+  def add?
+    command.downcase.start_with?("add")
+  end
+
+  def subtract?
+    command.downcase.start_with?("subtract")
   end
 
   def save?

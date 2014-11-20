@@ -20,7 +20,7 @@ class DataCleanerTest < Minitest::Test
     state = nil
     data_cleaner = DataCleaner.new
     empty_state = data_cleaner.clean_state(state)
-    assert_equal empty_state, "Nil"
+    assert_equal empty_state, "N/A"
   end
 
   def test_it_strips_states_down_to_two_letters
@@ -34,6 +34,6 @@ class DataCleanerTest < Minitest::Test
     street = nil
     data_cleaner = DataCleaner.new
     empty_street = data_cleaner.clean_street(street)
-    assert_equal empty_street, "Nil"
+    assert_equal empty_street, "N/A"
   end
 end
